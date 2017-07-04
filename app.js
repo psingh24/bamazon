@@ -1,13 +1,8 @@
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var config = require("./db.js")
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 8889,
-  user: "root",
-  password: "root",
-  database: "bamazon"
-});
+var connection = mysql.createConnection(config.mySQLKeys);
 
 connection.connect(function(err) {
   if (err) throw err;
