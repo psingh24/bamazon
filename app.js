@@ -34,7 +34,7 @@ function bamazon() {
       if (answers.department === "Books") {
         getProducts(answers.department);
       } else if (answers.department === "Electronics") {
-        getProducts("Electronic");
+        getProducts(answers.department);
       } else if (answers.department === "Movies & TV") {
         getProducts(answers.department);
       } else if (answers.department === "Home, Garden, Tools") {
@@ -48,9 +48,9 @@ function bamazon() {
 bamazon();
 
 function getProducts(item) {
+
   connection.query(
-    "Select * From products Where department_name=?",
-    [item],
+    "Select * From products Where department_name=?", [item],
     function(err, res) {
       //      if (err) throw err;
       // if (item === "Books") {
@@ -85,9 +85,7 @@ function getProducts(item) {
           var name = answer.product.split(";");
           // var quanity;
 
-          connection.query(
-            "SELECT * FROM products WHERE ?",
-            [
+          connection.query("SELECT * FROM products WHERE ?",[
               {
                 product_name: name[0]
               }
