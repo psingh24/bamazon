@@ -8,6 +8,7 @@ connection.connect(function(err) {
   if (err) throw err;
 
   //   console.log("connected ad id "+ connection.threadId)
+  manager();
 });
 
 var products = [];
@@ -326,7 +327,7 @@ function addMore() {
         }
     })
 }
-manager();
+
 
 
 

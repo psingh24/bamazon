@@ -8,6 +8,7 @@ connection.connect(function(err) {
   if (err) throw err;
 
   // console.log("connected ad id "+ connection.threadId)
+  bamazon();
 });
 
 
@@ -45,7 +46,7 @@ function bamazon() {
     });
 }
 
-bamazon();
+
 
 function getProducts(item) {
 
@@ -55,11 +56,11 @@ function getProducts(item) {
       //      if (err) throw err;
       // if (item === "Books") {
       for (var i = 0; i < res.length; i++) {
-        var output = res[i].product_name + ": Price:$" + res[i].price;
+        var output = res[i].product_name + "; Price:$" + res[i].price;
         // name = res[i].product_name
         namePrice.push(output);
       }
-
+ 
       inquirer
         .prompt([
           {
@@ -81,36 +82,45 @@ function getProducts(item) {
         ])
         .then(function(answer) {
           var buyHowMany = answer.quantity;
+          var product_sales;
 
-          var name = answer.product.split(":");
+          var name = answer.product.split(";");
+        
           // var quanity;
 
           connection.query("SELECT * FROM products WHERE ?",[
               {
-                product_name: name[0]
+                product_name: name[0],
+
               }
             ],
             function(err, res) {
               if (err) throw err;
+             
               for (var i = 0; i < res.length; i++) {
                 var quanity = res[i].stock_quantity;
+                product_sales = res[i].product_sales
               }
 
               var total = Number(quanity) - Number(buyHowMany);
+              
 
               var Price = name[1].split("$");
               var purchaseAmount = Number(Price[1]);
+              var productSale = Number(product_sales + (purchaseAmount * buyHowMany))
+             
 
               if (total < 0) {
                 console.log("Sorry not enough in storage");
                 getProducts(name[0]);
-                // console.log(name)
+          
               } else {
                 connection.query(
                   "Update products SET ? Where ?",
                   [
                     {
-                      stock_quantity: total
+                      stock_quantity: total,
+                      product_sales: productSale
                     },
                     {
                       product_name: name[0]
