@@ -133,7 +133,7 @@ function addToInventory() {
                    Inventory = res[i].stock_quantity
                }
                var total = Inventory + howMany
-               console.log(total)
+            //    console.log(total)
             connection.query("Update products SET ? Where ?", [{
                 stock_quantity: total
             },
@@ -236,8 +236,6 @@ function productInfo(item) {
     [item],
     function(err, res) {
       if (err) throw err;
-      //    console.log(res)
-      // if (item === "Books") {
       for (var i = 0; i < res.length; i++) {
         price = res[i].price;
         quantity = res[i].stock_quantity;
@@ -249,67 +247,50 @@ function productInfo(item) {
             message: "Click on Price or Inventory to change",
             type: "list",
             choices: ["Price: $" + price, "Inventory: " + quantity]
+          },
+          {
+            name: "changeTo",
+            message: "What do you want to change it to?",
+            validate: function(value) {
+              if (isNaN(value) === false) {
+                return true;
+              }
+              return false;
+            }
           }
         ])
         .then(function(answer) {
           if (answer.edit === "Price: $" + price) {
-            changeTo(item, price);
-          } else if ("Inventory: " + quantity) {
-            changeTo(item, quantity);
+            connection.query("Update products SET ? Where ?",
+          [{price: answer.changeTo},
+           {product_name: item}
+          ],
+          function(err, res) {
+            if (err) throw err;
+
+            console.log("You have successfully changed the price of "+item+" from $"+ price+ " to $"+answer.changeTo)
+            setTimeout(returnToTheMainMenu, 1000)
+          }
+        );
+        } else if ("Inventory: " + quantity) {
+          connection.query("Update products SET ? Where ?",
+          [{stock_quantity: answer.changeTo},
+            {product_name: item}
+          ],
+          function(err, res) {
+            if (err) throw err;
+            console.log("You have successfully changed the inventory amount of "+item+" from "+ quantity+ " to "+answer.changeTo)
+            setTimeout(returnToTheMainMenu, 1000)
+          }
+        );
+           
           }
         });
     }
   );
 }
 
-function changeTo(item, route) {
-  inquirer
-    .prompt([
-      {
-        name: "changeTo",
-        message: "What do you want to change it to?",
-        validate: function(value) {
-          if (isNaN(value) === false) {
-            return true;
-          }
-          return false;
-        }
-      }
-    ])
-    .then(function(answer) {
-      if (route === price) {
-        connection.query(
-          "Update products SET ? Where ?",
-          [
-            {
-              price: answer.changeTo
-            },
-            {
-              product_name: item
-            }
-          ],
-          function(err, res) {
-            if (err) throw err;
-          }
-        );
-      } else if (route === quantity) {
-        connection.query(
-          "Update products SET ? Where ?",
-          [
-            {
-              stock_quantity: answer.changeTo
-            },
-            {
-              product_name: item
-            }
-          ],
-          function(err, res) {
-            if (err) throw err;
-          }
-        );
-      }
-    });
-}
+// 
 
 
 function returnToTheMainMenu() {
@@ -346,3 +327,6 @@ function addMore() {
     })
 }
 manager();
+
+
+

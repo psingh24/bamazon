@@ -55,7 +55,7 @@ function getProducts(item) {
       //      if (err) throw err;
       // if (item === "Books") {
       for (var i = 0; i < res.length; i++) {
-        var output = res[i].product_name + "; Price:$" + res[i].price;
+        var output = res[i].product_name + ": Price:$" + res[i].price;
         // name = res[i].product_name
         namePrice.push(output);
       }
@@ -82,7 +82,7 @@ function getProducts(item) {
         .then(function(answer) {
           var buyHowMany = answer.quantity;
 
-          var name = answer.product.split(";");
+          var name = answer.product.split(":");
           // var quanity;
 
           connection.query("SELECT * FROM products WHERE ?",[
