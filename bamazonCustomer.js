@@ -11,6 +11,18 @@ connection.connect(function(err) {
   bamazon();
 });
 
+console.log(
+  "****************      Welcome to Bamazon!       **********************"
+);
+console.log(
+  "*         Select department you wish to shop in to begin.            *"
+);
+console.log(
+  "****************          Have fun!            ***********************"
+);
+console.log("");
+console.log("");
+console.log("");
 
 var namePrice = [];
 var cart;
