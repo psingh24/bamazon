@@ -13,20 +13,25 @@ Customer
 -------
 This allows the user to shop. Select the department you wish to shop and to begin.
 
-[Gif of app](http://imgur.com/XkJVA6g)
+[Video of app](https://www.youtube.com/watch?v=v-LEO_fZXAo)
 
-Manager
--------
+
+![Alt text](assets/images/customer.png?raw=true "customer")
+
+Manager View
+------------
 This allows the user to manage their Bamazon store. They can view products for sale, products with low inventory, add to inventory and add new products.
 
-[Gif of app](http://imgur.com/OmLAhgj)
+[Video of app](https://www.youtube.com/watch?v=Ycao3CreB_I)
 
-![Alt text](images/spotify.png?raw=true "spotify Search")
 
-Supervisor
-----------
-This allows the user to search for a movie title and return specific IMDB information about that movie
+![Alt text](assets/images/manager.png?raw=true "manager")
 
-[Gif of app](http://imgur.com/lUOzgdj)
+Supervisor View
+---------------
+This allows the user to have oversight of the entire business. See how department sales are doing and over all profits. The user can also add new departments.
 
-![Alt text](images/movie.png?raw=true "movie Search")
+[Video of app](https://www.youtube.com/watch?v=rNvxTU5kIhw)
+
+
+![Alt text](assets/images/Supervisor.png?raw=true "Supervisor")
