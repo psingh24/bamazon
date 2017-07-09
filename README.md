@@ -7,7 +7,6 @@ Bamazon uses the inquirer npm library to make user expereince better.
 Other packages used: mySQL, cli-table2
 
 
-![Alt text](images/example.png?raw=true "Example Search")
 
 Customer
 -------
