@@ -13,7 +13,7 @@ Customer
 -------
 This allows the user to shop. Select the department you wish to shop and to begin.
 
-![Alt text](/assets/videos/bamazonCustomer.gif?raw=true "twitter Search")
+[Gif of app](http://imgur.com/gallery/XkJVA6g)
 
 Manager
 -------
