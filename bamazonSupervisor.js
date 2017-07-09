@@ -8,7 +8,6 @@ var connection = mysql.createConnection(config.mySQLKeys);
 connection.connect(function(err) {
   if (err) throw err;
 
-  //   console.log("connected ad id "+ connection.threadId)
   superVisor();
 });
 
@@ -32,44 +31,42 @@ function superVisor() {
 }
 
 function viewProducts() {
-  var query = "SELECT d.department_id, d.department_name, d.over_head_costs, SUM(p.product_sales) as ProductSales, ";
-  query+= "SUM(p.product_sales) - d.over_head_costs AS total_profit ";
-  query+= "FROM products as p ";
-  query+= "INNER JOIN department as d ON p.department_name=d.department_name ";
-  query+= "group by d.department_name ";
-  query+= "order by d.department_id";
-  connection.query(query,
-    function(err, res) {
-      if (err) throw err;
-      // console.log(res)
-      var table = new Table({
-        head: [
-          "Department ID",
-          "Department Name",
-          "Over Head Costs",
-          "Product Sales",
-          "Total Profits"
-        ],
-        style: {
-          head: [], //disable colors in header cells
-          border: [] //disable colors for the border
-        },
-        colWidths: [17, 25, 19, 20] //set the widths of each column (optional)
-      });
+  var query =
+    "SELECT d.department_id, d.department_name, d.over_head_costs, SUM(p.product_sales) as ProductSales, ";
+  query += "SUM(p.product_sales) - d.over_head_costs AS total_profit ";
+  query += "FROM products as p ";
+  query += "INNER JOIN department as d ON p.department_name=d.department_name ";
+  query += "group by d.department_name ";
+  query += "order by d.department_id";
+  connection.query(query, function(err, res) {
+    if (err) throw err;
+    var table = new Table({
+      head: [
+        "Department ID",
+        "Department Name",
+        "Over Head Costs",
+        "Product Sales",
+        "Total Profits"
+      ],
+      style: {
+        head: [], //disable colors in header cells
+        border: [] //disable colors for the border
+      },
+      colWidths: [17, 25, 19, 20] //set the widths of each column (optional)
+    });
 
-      for (var i = 0; i < res.length; i++) {
-        table.push([
-          res[i].department_id,
-          res[i].department_name,
-          res[i].over_head_costs,
-          res[i].ProductSales,
-          res[i].total_profit
-        ]);
-      }
-
-      console.log(table.toString());
+    for (var i = 0; i < res.length; i++) {
+      table.push([
+        res[i].department_id,
+        res[i].department_name,
+        res[i].over_head_costs,
+        res[i].ProductSales,
+        res[i].total_profit
+      ]);
     }
-  );
+
+    console.log(table.toString());
+  });
 
   setTimeout(superVisor, 3000);
 }
