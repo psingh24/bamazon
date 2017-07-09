@@ -13,6 +13,7 @@ connection.connect(function(err) {
 
 var products = [];
 var LowProductQuantity = [];
+var low = [];
 function manager() {
   inquirer
     .prompt([
@@ -171,7 +172,6 @@ function lowInventory() {
 
     for (var i = 0; i < res.length; i++) {
       if (res[i].stock_quantity < 5) {
-        console.log("hello");
         LowProductQuantity.push(
           "Product: " +
             res[i].product_name +
@@ -181,11 +181,17 @@ function lowInventory() {
       }
     }
     if (LowProductQuantity.length !== 0) {
+      low = [];
       console.log("These Items are low in quantity: \n");
+   
       for (var i = 0; i < LowProductQuantity.length; i++) {
-        console.log(LowProductQuantity[i]);
-        setTimeout(returnToTheMainMenu, 1000)
+        low.push(LowProductQuantity[i]);
+    
       }
+      console.log(low)
+      
+       setTimeout(returnToTheMainMenu, 1000)
+       
     } else {
       console.log("Inventory looks good, everything is fully stocked!");
       setTimeout(returnToTheMainMenu, 1000)
@@ -201,7 +207,6 @@ function getProducts() {
     for (var i = 0; i < res.length; i++) {
       products.push(res[i].product_name);
       if (res[i].stock_quantity < 5) {
-        console.log("hello");
         LowProductQuantity.push(
           "Product: " +
             res[i].product_name +

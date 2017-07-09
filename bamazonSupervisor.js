@@ -33,7 +33,7 @@ function superVisor() {
 
 function viewProducts() {
   var query = "SELECT d.department_id, d.department_name, d.over_head_costs, SUM(p.product_sales) as ProductSales, ";
-  query+= "d.over_head_costs - SUM(p.product_sales) AS total_profit ";
+  query+= "SUM(p.product_sales) - d.over_head_costs AS total_profit ";
   query+= "FROM products as p ";
   query+= "INNER JOIN department as d ON p.department_name=d.department_name ";
   query+= "group by d.department_name ";
