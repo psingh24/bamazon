@@ -15,7 +15,7 @@ This allows the user to shop. Select the department you wish to shop and to begi
 [Video of app](https://www.youtube.com/watch?v=v-LEO_fZXAo)
 
 
-![Alt text](assets/images/customer.png?raw=true "customer")
+![Alt text](/Users/Prabhdeepsingh/Desktop/Development/bamazon/assets/images/customer.png?raw=true "customer")
 
 Manager View
 ------------
