@@ -13,11 +13,11 @@ Customer
 -------
 This allows the user to shop. Select the department you wish to shop and to begin.
 
-![Alt text](images/tweet.png?raw=true "twitter Search")
+![Alt text](/assets/videos/bamazonCustomer.gif?raw=true "twitter Search")
 
 Manager
 -------
-This allows the user to search for a song and access information about that song from Spotify
+This allows the user to manage their Bamazon store. They can view products for sale, products with low inventory, add to inventory and add new products.
 
 ![Alt text](images/spotify.png?raw=true "spotify Search")
 
