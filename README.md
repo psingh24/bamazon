@@ -1,15 +1,15 @@
 Bamazon
 -------
 
-An interactive shopping node app where MySQL and Node.JS are used to allow users to purchase items as a customer, view, track and update the product inventory as a manager, and track the total sales by department as an executive.
+An interactive shopping node app where MySQL and Node.JS are used to allow users to purchase items as a customer, view, track and update the product inventory as a manager, and track the total sales by department as an supervisor.
 
 Bamazon uses the inquirer npm library to make user expereince better.
-Other packages used: mySQL, cli-table2
+Other packages used: [mySQL](https://www.npmjs.com/package/mysql), [cli-table2](https://www.npmjs.com/package/cli-table2)
 
 
 
-Customer
--------
+Customer View
+-------------
 This allows the user to shop. Select the department you wish to shop and to begin.
 
 [Video of app](https://www.youtube.com/watch?v=v-LEO_fZXAo)
